@@ -22,6 +22,7 @@
   @media (max-width: 500px) { html, body { background: #000; } }
   @keyframes flapIn { from { opacity: 0; transform: translateY(6px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes jwHeadsUpBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
   @keyframes cardIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes drawerUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
   @keyframes drawerDown { from { transform: translateY(0); } to { transform: translateY(100%); } }
@@ -64,7 +65,7 @@
     <div style="position: absolute; left: 0; right: 0; bottom: 56px; z-index: 6; height: 50px; background: var(--bg-elevated); box-sizing: border-box; overflow: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center; opacity: {{ headsUpOpacity }}; transition: opacity 200ms var(--ease-standard);">
       <dotlottie-wc ref="{{ headsUpRef }}" src="skin/lottie/headsup.lottie" loop="false" style="width: 100%; height: 50px;"></dotlottie-wc>
       <div style="position: absolute; inset: 0; display: flex; align-items: center; padding-left: 16px; box-sizing: border-box;">
-        <span style="font: var(--fw-bold) 13px/1.3 var(--font-body); color: var(--kto-yellow);">Hold on! something big is coming!</span>
+        <span style="font: var(--fw-bold) 13px/1.3 var(--font-body); color: var(--kto-yellow); animation: jwHeadsUpBlink 800ms ease-in-out infinite;">You won a Jackpot! Hold on!</span>
       </div>
     </div>
 
@@ -393,7 +394,7 @@ class Component extends DCLogic {
     this._headsUpFallback = setTimeout(() => {
       this._stopHeadsUpDrive();
       this.revealWheel();
-    }, 4000);
+    }, 5000);
     this._playAttach(0);
   };
 
